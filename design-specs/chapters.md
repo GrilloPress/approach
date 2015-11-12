@@ -2,7 +2,7 @@
 
 0. Introduction
 
-1. Installing Laravel
+1. Installing Laravel/Rails/Framework of choice
 
 2. Creating the application skeleton
 
