@@ -1,0 +1,14 @@
+# Ignore bundler config.
+approach/.bundle
+
+# Ignore the default SQLite database.
+approach/db/*.sqlite3
+approach/db/*.sqlite3-journal
+
+# Ignore all logfiles and tempfiles.
+approach/log/*
+approach!/log/.keep
+approach/tmp
+
+approach/Gemfile.lock
+approach/config/secrets.yml

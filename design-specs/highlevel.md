@@ -1,6 +1,6 @@
 # Approach
 
-Approach is a simple application created in Laravel which captures messages via a form.
+Approach is a simple application which captures messages via a form.
 
 An example where this app could be used is as a landing page with a sign up form.
 

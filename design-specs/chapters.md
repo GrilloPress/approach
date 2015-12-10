@@ -2,13 +2,13 @@
 
 0. Introduction
 
-1. Installing Laravel
+1. Installing Rails
 
 2. Creating the application skeleton
 
-3. Creating the static Marketing Page
+3. Creating the message model
 
-4. Creating the message model
+4. Creating the static Marketing Page
 
 5. Creating the admin panel
 
