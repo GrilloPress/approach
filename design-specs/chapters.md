@@ -2,7 +2,11 @@
 
 0. Introduction
 
+<<<<<<< HEAD
 1. Installing Rails
+=======
+1. Installing Laravel/Rails/Framework of choice
+>>>>>>> f09a475e70a15aac86f2a94df223dae8f690cefc
 
 2. Creating the application skeleton
 
