@@ -24,8 +24,6 @@ So, we have the name of our model. We could just generate that file with ```rail
 
 All of the types of thing we can place into our model, and save to our database are:
 
-The whole list of available types are:
-
 |Available Type   	|What it is   	|
 |---	|---	|
 |integer   	|A whole number, like 1 |
@@ -42,24 +40,65 @@ The whole list of available types are:
 |timestamp    |A date and time used with a label like "created_at" |
 
 
+To use one of these datatypes in our command we put the label or name of the database field, so monkey is monkey, and the data type afterwards connected by a colon. So our monkey label would be ```monkey:string```.
 
+This would create a model, and a potential record in our database, with a column called monkey with the datatype of string.
 
-
-
-
-
-
-
-
-
-
-
-To use one of these in our command we put the label of the database field, so monkey is monkey, and the type connected by a colon. So our monkey label would be ```monkey:string```.
-
-
+In our app, our model will be called Message as we mentioned. Inside that model of a message we want to collect people's name, their email, potentially their phone number, their company's name and give them some room to write a long message explaining why they need our service.
 
 Our command is therefore:
 
 ```sh
 rails g model Message name:text email:text phone:text company:text  body:text   
 ```
+
+When you run this command, you have told rails to run the g or generator command, and the type of thing to generate (a model), the name of the model and then what to place inside that model.
+
+When you do, two major files that Rails creates for you are the model file itself ```app/models/message.rb```, and a "migration" file.
+
+Inside our model, it is pretty sparse. It will look something like:
+
+```
+class Message < ActiveRecord::Base
+end
+```
+
+Not much in there. Essentially a class with our Model name, inheriting ```<``` from ActiveRecord all of the default model capabilities to read and save to our database.
+
+The migration file has a little more going on. A migration is essentially a file which designates in Ruby what transformation we need to see in our database. Each migration has a unique ID number, so yours will be different than mine.
+
+This ID let's us go through each transformation of our DB and potentially, change, update or remove specific database moves.
+
+Within the ```db/migrate``` directory you should have file called something like ```20151210232533_create_messages.rb``` with the following contents:
+
+```rb
+class CreateMessages < ActiveRecord::Migration
+  def change
+    create_table :messages do |t|
+      t.text :name
+      t.text :email
+      t.text :phone
+      t.text :company
+      t.text :body
+
+      t.timestamps null: false
+    end
+  end
+end
+```
+
+This file contains a class, which inherits from ActiveRecord's migration class. With that inheritance, it can create and update tables in your database, amongst other things.
+
+Inside we have a method called change, indicating we are making a change, with a block where we call the ```create_table``` method.
+
+We provide a symbol with the name of the table we want to create ```:messages```, and inside a do/end block we create all of our text columns with the labels to the right
+
+Although Rails created this migration, it hasn't actioned it. We are ready to create this table in the database, but it hasn't happened yet. To action it, we run a rake (ruby make) command.
+
+The command we use is:
+
+```sh
+rake db:migrate
+```
+
+
