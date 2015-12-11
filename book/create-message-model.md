@@ -26,20 +26,20 @@ All of the types of thing we can place into our model, and save to our database 
 
 The whole list of available types are:
 
-|   	|   	|
+|Available Type   	|What it is   	|
 |---	|---	|
-|integer   	|   	|
+|integer   	|A whole number, like 1 |
 |primary_key   	|   	|
-|decimal   	|   	|
-|float   	|   	|
-|boolean   	|   	|
-|binary   	|   	|
-|string   	|   	|
-|text   	|   	|
-|date   	|   	|
-|time   	|   	|
-|datetime   	|   	|
-|timestamp    |    |
+|decimal   	|A decimal number, so something like 0.12   	|
+|float   	| Very similar to decimal, it is a number like 0.12, but unlike decimal, it doesn't save the actual number, but rather binary point number stored like so: 1101010.10010  	|
+|boolean   	|A boolean value is basically true or false. Many databases save this as 0 or 1 but it translates to either true or false   	|
+|binary   	|Binary is 1001010   	|
+|string   	|A string is a short bit of text. In MySQL it is best to use this where possible over text   	|
+|text   	|A large chunk of text, much larger than a string but fundamentally similar. In PostGreSQL you should use this rather than strings   	|
+|date   	|A date type that stores the year, month, and day values |
+|time   	|A data type that stores hour, minute, and second values|
+|datetime   	|A combination of the date and time, something like: Monday, 26-Aug-2010 12:00:00 UTC   	|
+|timestamp    |A date and time used with a label like "created_at" |
 
 
 
