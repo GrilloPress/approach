@@ -101,4 +101,17 @@ The command we use is:
 rake db:migrate
 ```
 
+When you have run this command you should see some output like so:
 
+```
+== 20151210232533 CreateMessages: migrating =================================== 
+-- create_table(:messages)                                                      
+   -> 0.0026s                                                                   
+== 20151210232533 CreateMessages: migrated (0.0027s) ========================== 
+```
+
+This message tells us how quickly and successfully rake has been migrating the new table and columns into our database.
+
+Congratulations, you now have your first model, and a database with your table in it.
+
+In our next section we'll wire up our controller to let us create messages through our a webpage
