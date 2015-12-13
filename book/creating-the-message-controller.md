@@ -20,9 +20,10 @@ The conventional way to create CRUD methods in Rails is through the methods inde
 
 
 ```sh
-rails g controller messages index show new create update delete
+rails g controller messages index show new create update destroy
 ```
 
+> If you're are very sharp-eyed you may have noticed we used destroy instead of delete. This is because it is a Rails convention not to call files after the four RESTful verbs of GET, PUT, PATCH, DELETE
 
 Once you run this command Rails will create a lot of files for you. Your output will look something like this:
 
@@ -31,7 +32,7 @@ create  app/controllers/messages_controller.rb
   route  get 'messages/update'                                                                                                                                
   route  get 'messages/create'                                                                                                                                
   route  get 'messages/new'                                                                                                                                   
-  route  get 'messages/delete'                                                                                                                                
+  route  get 'messages/destroy'                                                                                                                                
   route  get 'messages/show'                                                                                                                                  
   route  get 'messages/index'                                                                                                                                 
   invoke  erb                                                                                                                                                  
@@ -41,7 +42,7 @@ create  app/controllers/messages_controller.rb
   create    app/views/messages/new.html.erb                                                                                                                    
   create    app/views/messages/create.html.erb                                                                                                                 
   create    app/views/messages/update.html.erb                                                                                                                 
-  create    app/views/messages/delete.html.erb                                                                                                                 
+  create    app/views/messages/destroy.html.erb                                                                                                                 
   invoke  test_unit                                                                                                                                            
   create    test/controllers/messages_controller_test.rb                                                                                                       
   invoke  helper                                                                                                                                               
@@ -65,6 +66,34 @@ What Rails is doing here is creating:
 - a single Scss file too ```app/assets/stylesheets/messages.scss```
 
 That's a lot of files. The generation of so many files can be daunting, but we'll go through them all so don't fret.
+
+If we open up our new controller file ```app/controllers/messages_controller.rb```, you should see:
+
+```rb
+class MessagesController < ApplicationController
+  def index
+  end
+
+  def show
+  end
+
+  def new
+  end
+
+  def create
+  end
+
+  def update
+  end
+
+  def destroy
+  end
+end
+```
+
+Inside this file we are declaring a class called ```MessagesController```, which inherits from our ```ApplicationController``` class declared in ```app/controllers/application_controller.rb```, and inside it we have our six methods we asked Rails to generate along with the file.
+
+At the moment, all these do is link up, due to a Rails convention, to a view file with the same name. That is, a method called index will look for a view file called index.html.erb within the ```app/views/messages``` directory.
 
 
 
