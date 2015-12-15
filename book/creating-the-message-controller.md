@@ -20,30 +20,22 @@ The conventional way to create CRUD methods in Rails is through the methods inde
 
 > If you're are very sharp-eyed you may have noticed we used destroy instead of delete. This is because it is a Rails convention not to call files after the four RESTful verbs of GET, PUT, PATCH, DELETE
 
-Run the following command to generate a controller with those methods:
+Run the following command to generate a controller with the first two of those methods:
 
 ```sh
-rails g controller messages index show new create update destroy
+rails g controller messages index show
 ```
 
 Once you run this command Rails will create a lot of files for you. Your output will look something like this:
 
 ```sh
-create  app/controllers/messages_controller.rb                                                                                                               
-  route  get 'messages/update'                                                                                                                                
-  route  get 'messages/create'                                                                                                                                
-  route  get 'messages/new'                                                                                                                                   
-  route  get 'messages/destroy'                                                                                                                                
+create  app/controllers/messages_controller.rb                                                                                                                                                                                                                                            
   route  get 'messages/show'                                                                                                                                  
   route  get 'messages/index'                                                                                                                                 
   invoke  erb                                                                                                                                                  
   create    app/views/messages                                                                                                                                 
   create    app/views/messages/index.html.erb                                                                                                                  
-  create    app/views/messages/show.html.erb                                                                                                                   
-  create    app/views/messages/new.html.erb                                                                                                                    
-  create    app/views/messages/create.html.erb                                                                                                                 
-  create    app/views/messages/update.html.erb                                                                                                                 
-  create    app/views/messages/destroy.html.erb                                                                                                                 
+  create    app/views/messages/show.html.erb                                                                                                                                                                                                                                  
   invoke  test_unit                                                                                                                                            
   create    test/controllers/messages_controller_test.rb                                                                                                       
   invoke  helper                                                                                                                                               
@@ -59,7 +51,7 @@ create  app/controllers/messages_controller.rb
 What Rails is doing here is creating:
 
 - controller file ```app/controllers/messages_controller.rb```
-- update your routes to include a route per method ```get 'messages/update' etc.```
+- update your routes to include a route per method ```get 'messages/index' etc.```
 - a view file per method in ```app/views/messages```
 - a test file ```test/controllers/messages_controller_test.rb```
 - a helper file ```app/helpers/messages_helper.rb```
@@ -77,22 +69,10 @@ class MessagesController < ApplicationController
 
   def show
   end
-
-  def new
-  end
-
-  def create
-  end
-
-  def update
-  end
-
-  def destroy
-  end
 end
 ```
 
-Inside this file we are declaring a class called ```MessagesController```, which inherits from our ```ApplicationController``` class declared in ```app/controllers/application_controller.rb```, and inside it we have our six methods we asked Rails to generate along with the file.
+Inside this file we are declaring a class called ```MessagesController```, which inherits from our ```ApplicationController``` class declared in ```app/controllers/application_controller.rb```, and inside it we have our first two methods we asked Rails to generate along with the file.
 
 At the moment, all these do is link up, due to a Rails convention, to a view file with the same name. That is, a method called index will cause Rails to look for a view file called index.html.erb within the ```app/views/messages``` directory.
 
@@ -111,10 +91,6 @@ The wiring that enables this is within your routes file. This is located: ```con
 ```rb
   get 'messages/index'
   get 'messages/show'
-  get 'messages/new'
-  get 'messages/create'
-  get 'messages/update'
-  get 'messages/destroy'
 ```
 
 These get allow us to tell Rails to allow us to use the messages/index route. By convention again, Rails presumed we have a controller called messages, and each additional URL part has a method. If they don't, Rails will raise up an error.

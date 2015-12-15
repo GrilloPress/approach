@@ -114,4 +114,19 @@ This message tells us how quickly and successfully rake has been migrating the n
 
 Congratulations, you now have your first model, and a database with your table in it.
 
+### Seeding some data
+
+Before we move on, let's seed our database with some example messages. This will help us manage the message creation admin panel and initial controller.
+
+One of the several ways of seeing data is to add some examples to ```app/db/seeds.rb``` file and then run ```rake db:setup```.
+
+Inside ```app/db/seeds.rb```, write the following:
+
+```rb
+Message.create(name: 'Andrew', email: 'example@fake.com', phone: '00000000000', company: 'Grillopress', body: 'Hi, I am writing a message!')
+Message.create(name: 'Andrew', email: 'example@fake.com', phone: '00000000000', company: 'Grillopress', body: 'Yo, this is a second message')
+Message.create(name: 'Andrew', email: 'example@fake.com', phone: '00000000000', company: 'Grillopress', body: 'Forgot to mention, buy some bread!')
+```
+
+
 In our next section we'll wire up our controller to let us create messages through our a webpage
