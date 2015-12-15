@@ -16,14 +16,15 @@ We do this by generating it with a Rails command. Like the model, it is a case o
 
 We'll not just generate a plain controller however, we can use some additional parameters to set up our CRUD methods (though they will be empty).
 
-The conventional way to create CRUD methods in Rails is through the methods index, show, new, create, update and delete.
+The conventional way to create CRUD methods in Rails is through the methods index, show, new, create, update and destroy.
 
+> If you're are very sharp-eyed you may have noticed we used destroy instead of delete. This is because it is a Rails convention not to call files after the four RESTful verbs of GET, PUT, PATCH, DELETE
+
+Run the following command to generate a controller with those methods:
 
 ```sh
 rails g controller messages index show new create update destroy
 ```
-
-> If you're are very sharp-eyed you may have noticed we used destroy instead of delete. This is because it is a Rails convention not to call files after the four RESTful verbs of GET, PUT, PATCH, DELETE
 
 Once you run this command Rails will create a lot of files for you. Your output will look something like this:
 
@@ -93,11 +94,50 @@ end
 
 Inside this file we are declaring a class called ```MessagesController```, which inherits from our ```ApplicationController``` class declared in ```app/controllers/application_controller.rb```, and inside it we have our six methods we asked Rails to generate along with the file.
 
-At the moment, all these do is link up, due to a Rails convention, to a view file with the same name. That is, a method called index will look for a view file called index.html.erb within the ```app/views/messages``` directory.
+At the moment, all these do is link up, due to a Rails convention, to a view file with the same name. That is, a method called index will cause Rails to look for a view file called index.html.erb within the ```app/views/messages``` directory.
 
+If we visit our application using the route of ```localhost:3000/messages/index``` you'll see a simple message of:
 
+```
+Messages#index
 
+Find me in app/views/messages/index.html.erb
+```
 
+If you find that file, ```app/views/messages/index.html.erb```, you'll see that message again, in simple HTML.
+
+The wiring that enables this is within your routes file. This is located: ```config/routes.rb```. Inside that file you'll see:
+
+```rb
+  get 'messages/index'
+  get 'messages/show'
+  get 'messages/new'
+  get 'messages/create'
+  get 'messages/update'
+  get 'messages/destroy'
+```
+
+These get allow us to tell Rails to allow us to use the messages/index route. By convention again, Rails presumed we have a controller called messages, and each additional URL part has a method. If they don't, Rails will raise up an error.
+
+As Rails is based heavily on convention, there is also an easier way of declaring all of these routes. We can do this by declaring ```resources``` with symbol afterwards connecting it to a specific controller.
+
+This will automatically make all of the GET routes, and unlike what we have currently, the correct methods for destroying and updating our messages.
+
+Let's do some remedial work here to clean things up. 
+
+Let's remove all those get links with this one liner:
+
+```rb
+resources :messages
+```
+
+Lovely bit of refactoring there!
+
+A second thing to do is to delete the ```app/views/messages/delete.html.erb``` file. This was never needed. We don't render a HTML page when we delete a record.
+
+Now, if you visit  ```app/views/messages/index.html.erb``` you'll see we are no longer on the index method. This is because the show method handles any GET attempt to messages with parameters after the ```messages/```.
+
+> INSERT --- To see this is in action, add the following code .... sub-tut for URL parameters
 
 > The new method exists to render the form for creating a new message. The create method is where the "dirty work" of creating and saving a record, whereas the new method connects to a ```new.html.erb``` file which contains a form.
 
