@@ -6,7 +6,7 @@ This part of the book is the meat. In this part we will first create the "model"
 
 ## What model we are creating
 
-We are creating a simple contact form that collects people's contact details and the work they wish us as superstar developers they wish to have completed
+We are creating a simple contact form that collects people's contact details and the work they wish us as superstar developers to have completed
 
 ## Generating your first model
 
