@@ -128,5 +128,6 @@ Message.create(name: 'Andrew', email: 'example@fake.com', phone: '00000000000', 
 Message.create(name: 'Andrew', email: 'example@fake.com', phone: '00000000000', company: 'Grillopress', body: 'Forgot to mention, buy some bread!')
 ```
 
+Feel free to add some of your own messages. Once you have finished run ```rake db:setup```. This will trigger rake to create those messages in the database.
 
-In our next section we'll wire up our controller to let us create messages through our a webpage
+In our next section we'll wire up our controller to let us create messages through our a webpage, rather than rake, and view our messages as well.

@@ -26,6 +26,8 @@ Run the following command to generate a controller with the first two of those m
 rails g controller messages index show
 ```
 
+We're covering just the first two initially as they related to showing all of our messages and every message individually. Once we've covered that, we'll move into more complicated things such as making messages through a form.
+
 Once you run this command Rails will create a lot of files for you. Your output will look something like this:
 
 ```sh
@@ -95,11 +97,24 @@ The wiring that enables this is within your routes file. This is located: ```con
 
 These get allow us to tell Rails to allow us to use the messages/index route. By convention again, Rails presumed we have a controller called messages, and each additional URL part has a method. If they don't, Rails will raise up an error.
 
+## Getting all of our messages
+
+To do this we need to call up our Message model and retrieve all messages
+
+```rb
+def index
+  @messages = Message.all
+end
+```
+
+
+
+
+## Rails Resources
+
 As Rails is based heavily on convention, there is also an easier way of declaring all of these routes. We can do this by declaring ```resources``` with symbol afterwards connecting it to a specific controller.
 
 This will automatically make all of the GET routes, and unlike what we have currently, the correct methods for destroying and updating our messages.
-
-Let's do some remedial work here to clean things up. 
 
 Let's remove all those get links with this one liner:
 
