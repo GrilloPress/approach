@@ -99,13 +99,53 @@ These get allow us to tell Rails to allow us to use the messages/index route. By
 
 ## Getting all of our messages
 
-To do this we need to call up our Message model and retrieve all messages
+To do this we need to call up our Message model from our controller and retrieve all messages. The code to achieve this is very simple. At first, this seems pretty magical like most of Rails.
+
+The code you need to write is:
 
 ```rb
+# app/controllers/messages_controller.rb
 def index
   @messages = Message.all
 end
 ```
+
+Here what we have done is:
+
+1. Added a line within our index method
+2. Created an instance variable called messages. Instance variables start with the ```@``` symbol. An instance variable is basically a variable that gets created every time Ruby makes an object. When we create an instance (by visiting the website) the instance variable will be filled with whatever data that is right that second. So, if we have hundreds of messages a week, one week this instance variable will have 100 messages inside it, the next week it will have 200.
+3. We have set our ```@messages``` instance variable to equal our ```Message``` model. Using the capitalized Message indicates to Rails that we want a model with that name. We have chained the ```Message``` model with a the method of ```.all```. This, as you may have guessed, gets back __all__ of the messages from our database.
+
+So, we have defined an instance variable called ```@messages``` and set its value to all of the messages inside our database.
+
+We could call our instance variable anything, but it makes sense to call it ```@messages``` because we have more than one message in this variable.
+
+## Updating our view to print out all of the messages
+
+Let's now update our view file to print out in simple form, all of our 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
