@@ -2,6 +2,5 @@
 <p>Find me in app/views/messages/index.html.erb</p>
 
 <% @messages.each do |m| %>
-  <%= m.body %> - <%= m.name %>
-  <br>
+  <p><%= m.body %> - <strong><%= m.name %></strong></p>
 <% end %>

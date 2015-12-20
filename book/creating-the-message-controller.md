@@ -122,7 +122,42 @@ We could call our instance variable anything, but it makes sense to call it ```@
 
 ## Updating our view to print out all of the messages
 
-Let's now update our view file to print out in simple form, all of our 
+Let's now update our view file to print out in simple form, all of our messages. To do that we need to write a ruby block that uses the instance variable we defined in our controller.
+
+In Rails, all instance variables declared in our controller are available in their corresponding view. So, if we created another instance variable called @rubbish, we could include that in our ```index.html.erb``` view file and have it printed into our HTML.
+
+Right, let's print out our messages. Open our ```app/views/controllers/messages/index.html.erb``` file and add the following:
+
+```erb
+<!-- app/views/messages/index.html.erb -->
+<% @messages.each do |m| %>
+  <p><%= m.body %> - <strong><%= m.name %></strong></p>
+<% end %>
+```
+
+Here what we have done is written some ERB, which is "embedded ruby", to call our controller and use the instance variable to print out every message. ERB is defined within the ```<% %>``` tags.
+
+So, to recap what we've done:
+
+1. We have called within our first ERB tag, our ```@messages``` instance variable. As our instance variable contains all of our messages, we need to loop through it to print our the individual messages
+2. We've set up an ```.each``` loop. Naturally, you can set up other types of loops. If you had a million messages using a ```.each``` loop would make the app very slow, so a particular number would make more sense. For now, we want each and every message so we use an ```.each``` loop.
+3. To get the loop started we use the do keyword with ```|m|``` being our __placeholder__. This placeholder can be anything but m for message makes sense.
+4. Our looping code stops with the end keyword. This is contained within a tag at the end of our code block. It looks like this: ```<% end %>```.
+5. Inside our do/end block we then write the individual code that will be repeated for every record found in our database. That is, for every message in the database, a loop is completed, and the code within the do/end block will be executed.
+6. Our code then adds some additional methods within this block. Using the ```m``` keyword to stand in for each individual message, we can use each database field name as a method to print out that field's value. So, if we want to print out the body method in a message, we use ```.body``` after our placeholder of m. Or more simply stated, we write ```<%= m.body %>```
+7. For this example we've just used our body and name database fields. We've also sprinkled some HTML around it so that each message is inside a paragraph, and the name of the sender of the message is in a strong tag and made bold.
+
+Make sure your Rails server is running and visit your ```/messages/index``` route. If your app is running on localhost this will be something like:
+
+```
+localhost:3000/messages/index
+```
+
+You should see the three messages we seeded in the previous chapter (and more if you added some of your own!). Not exactly beautiful but we've got a database with some data in it, and wired up a page where that data is printed out. Small steps, but the basis of nearly all websites and web apps.
+
+Add some additional fields, maybe our "company" field. If you ever need to double check how your database is structured, you can see this in the ```db/schema.rb``` file.
+
+## Adding the read method
 
 
 
