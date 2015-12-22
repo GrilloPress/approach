@@ -204,7 +204,11 @@ Because Rails apps, apps in general, require the full gamoult of CRUD methods, R
 
 This one change then, has updated how we can access our index method, we can now hit ```localhost:3000/messages```, with our show method, we can now just hit: ```localhost:3000/messages/1```
 
+In the case of show method, the extra ```/1``` is treated like a URL parameter and is used by our controller code to find the message specified.
 
+Our views this second don't actually reflect the call and retrieval of our database record - if you look at your console you will see however the machinery working behind the scenes.
+
+Let's update our ```show.html.erb``` file to print out the full range of our message.
 
 
 
