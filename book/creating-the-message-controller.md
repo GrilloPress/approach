@@ -159,6 +159,50 @@ Add some additional fields, maybe our "company" field. If you ever need to doubl
 
 ## Adding the read method
 
+As well as reading out each and every message, it would be useful for our system to let us read individual records. Although our records are simple, they can get more complicated and any system allows for this.
+
+This functionality is a second part of the R in CRUD apps. Read relates to both, reading ALL messages, and reading message 1 or 2, or 3 or... (etc.)
+
+Open up our message controller again ```app/controllers/messages_controller.rb```, and update our show method like so:
+
+```rb
+def show
+  @message = Message.find(params[:id])
+end
+```
+
+As with our index method before we have defined an instance variable. This time, instead of message__s__. We use _message_. This is because we are showing an individual record, and so that makes sense being singular.
+
+Again, as with the index method we call the Message Model by using a capitalized ```Message```. After that we chain the method find. This Active Record method, predictably tries to find the record in question. By default this looks for a number to match a message's ID.
+
+If you replaced the ```params[:id]``` with a 1, then every time someone visited your show URL they'd get the first message. This is because you would be telling Rails to search for the message with the ID of 1 all the time,
+
+Instead of hardcoding a number, we need something more dynamic. This is why we have used ```params[:id]``` within the brackets. This means, we will look for an ID in the URL to feed into this search query.
+
+The way we have set up our routes so far, this would have to be in a URL like so: ```localhost:3000/messages/show?id=1```. Here we call the show URL and add the required ID with a number after a question mark, that is the ```?id=1``` part.
+
+If you've created a PHP application before, you may have created a similar thing with a parameter of ```index.php?id=1``` etc to find individual posts.
+
+Rails has a different way of handling this, more in-line with RESTful conventions. Instead of using ```?id=1```, we can update our route file and just use a number instead of the show URL.
+
+To understand this, it is better to get updating our app.
+
+In the routes file ```config/routes.rb``` replace:
+
+```rb
+get 'messages/index'
+get 'messages/show'
+```
+
+With:
+
+```rb
+resources :messages
+```
+
+Because Rails apps, apps in general, require the full gamoult of CRUD methods, Rails has an in-built way of declaring all of those routes, and the correct RESTful way of doing so, in a one-liner.
+
+This one change then, has updated how we can access our index method, we can now hit ```localhost:3000/messages```, with our show method, we can now just hit: ```localhost:3000/messages/1```
 
 
 
