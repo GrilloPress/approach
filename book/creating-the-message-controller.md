@@ -210,9 +210,37 @@ Our views this second don't actually reflect the call and retrieval of our datab
 
 Let's update our ```show.html.erb``` file to print out the full range of our message.
 
+What we are going to create is a table with a row for our headers, and a row with all of the corresponding data within it.
 
+To inject our data we will use ERB to call our ```@message``` instance variable.
 
+Open up ```app/views/messages/show.html.erb``` and add the following content:
 
+```erb
+<table width="100%">
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Phone</th>
+    <th>Company</th>
+    <th>Created at</th>
+    <th>Last updated</th>
+    <th>Message</th>
+  </tr>
+  
+  <tr>
+    <td><%= @message.id %></td>
+    <td><%= @message.name %></td>
+    <td><%= @message.email %></td>
+    <td><%= @message.phone %></td>
+    <td><%= @message.company %></td>
+    <td><%= @message.created_at %></td>
+    <td><%= @message.updated_at %></td>
+    <td><%= @message.body %></td>
+  </tr>
+</table>
+```
 
 
 

@@ -1,6 +1,27 @@
 <h1>Messages#index</h1>
 <p>Find me in app/views/messages/index.html.erb</p>
 
-<% @messages.each do |m| %>
-  <p><%= m.body %> - <strong><%= m.name %></strong></p>
-<% end %>
+<table width="100%">
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Phone</th>
+    <th>Company</th>
+    <th>Created at</th>
+    <th>Last updated</th>
+    <th>Message</th>
+  </tr>
+  <% @messages.each do |m| %>
+  <tr>
+    <td><%= m.id %></td>
+    <td><%= m.name %></td>
+    <td><%= m.email %></td>
+    <td><%= m.phone %></td>
+    <td><%= m.company %></td>
+    <td><%= m.created_at %></td>
+    <td><%= m.updated_at %></td>
+    <td><%= m.body %></td>
+  </tr>
+  <% end %>
+</table>

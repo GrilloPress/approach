@@ -1,17 +1,29 @@
 <h1>Messages#show</h1>
 <p>Find me in app/views/messages/show.html.erb</p>
 
-<ul>
-  <li>ID: <%= @message.id %></li>
-  <li>Name: <%= @message.name %></li>
-  <li>Email: <%= @message.email %></li>
-  <li>Phone: <%= @message.phone %></li>
-  <li>Comapny: <%= @message.company %></li>
-  <li>Created at: <%= @message.created_at %></li>
-  <li>Last Updated: <%= @message.updated_at %></li>
-  <li>Message: <%= @message.body %></li>
-</ul>
-    
+<table width="100%">
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Phone</th>
+    <th>Company</th>
+    <th>Created at</th>
+    <th>Last updated</th>
+    <th>Message</th>
+  </tr>
+  
+  <tr>
+    <td><%= @message.id %></td>
+    <td><%= @message.name %></td>
+    <td><%= @message.email %></td>
+    <td><%= @message.phone %></td>
+    <td><%= @message.company %></td>
+    <td><%= @message.created_at %></td>
+    <td><%= @message.updated_at %></td>
+    <td><%= @message.body %></td>
+  </tr>
+</table>
     
     
     
